@@ -35,7 +35,7 @@ export default function RecipeList() {
     
     return (
         <div>
-            <h1>Recipes</h1>
+            <h1>Random Recipes</h1>
             <ul>
                 {randomRecipes.map(recipe => (
                     <Recipe 
