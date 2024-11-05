@@ -1,4 +1,5 @@
 package com.roufri.cookingplanner.model
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.io.Serializable
 
@@ -9,6 +10,7 @@ data class RecipeIngredient(
 
     @ManyToOne
     @MapsId("recipeId")
+    @JsonIgnore // Prevent serialization of the recipe reference in RecipeIngredient
     val recipe: Recipe,
 
     @ManyToOne
