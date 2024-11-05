@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Recipe from "./Recipe"
+import Recipe from "./Recipe";
 
 export default function RecipeList() {
     const [recipes, setRecipes] = useState([]);
@@ -10,12 +10,11 @@ export default function RecipeList() {
         const fetchAllRecipes = async () => {
             const response = await axios.get('http://localhost:8080/api/recipes');
             setRecipes(response.data);
-            setRandomRecipes(response.data.slice(0, 5)) // 5 random recipes
+            setRandomRecipes(response.data.slice(0, 5)); // 5 random recipes
         };
         fetchAllRecipes();
     }, []);
     
-       
     const reroll = (id) => {
         const currentRecipeIndex = randomRecipes.findIndex(recipe => recipe.id === id);
         const remainingRecipes = recipes.filter(recipe => 

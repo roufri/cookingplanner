@@ -1,21 +1,24 @@
 import React from 'react';
 
 export default function Recipe (props) {
-    var recipe = props.recipe
+    const { recipe } = props; // Destructure the recipe object
     
     return (
-        <div class="recipe-card">
-            <div class="recipe-header">
-                <h2 class="recipe-title">{recipe.title}</h2>
-                <button class="change-recipe-button" onClick={props.reroll}>🔄</button>
+        <div className="recipe-card">
+            <div className="recipe-header">
+                <h2 className="recipe-title">{recipe.name}</h2> {/* Change to recipe.name based on the API */}
+                <button className="change-recipe-button" onClick={props.reroll}>🔄</button>
             </div>
             <h3>Ingredients</h3>
-            <ul class="ingredients-list">
-                <li>{recipe.ingredients}</li>
+            <ul className="ingredients-list">
+                {recipe.ingredients.map(ingredient => (
+                    <li key={ingredient.id.ingredientId}>
+                        {ingredient.quantity} {ingredient.unit} of {ingredient.ingredient.name}
+                    </li>
+                ))}
             </ul>
             <h3>Instructions</h3>
-            <p class="instructions">{recipe.instructions}</p>
+            <p className="instructions">{recipe.instructions}</p>
         </div>
-
     );
 };
