@@ -70,3 +70,14 @@ h3 {
 .ingredients-list li {
   margin-bottom: 8px;
 }
+
+.aggregated-ingredients {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 10px;
+  position: relative; /* Add position relative for absolute positioning of button */
+}
