@@ -1,11 +1,18 @@
 package com.roufri.cookingplanner.service
 
 import com.roufri.cookingplanner.model.Recipe
+import com.roufri.cookingplanner.repository.IngredientRepository
+import com.roufri.cookingplanner.repository.RecipeIngredientRepository
 import com.roufri.cookingplanner.repository.RecipeRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
-class RecipeService(private val recipeRepository: RecipeRepository) {
+class RecipeService(
+    private val recipeRepository: RecipeRepository,
+    private val ingredientRepository: IngredientRepository,
+    private val recipeIngredientRepository: RecipeIngredientRepository
+) {
 
     fun getRandomRecipes(count: Int): List<Recipe> {
         val allRecipes = recipeRepository.findAll()
@@ -21,4 +28,22 @@ class RecipeService(private val recipeRepository: RecipeRepository) {
     }
 
     fun calcSizeDifferenceFactorRoundedUp(a: Int, b: Int) = (a + b - 1) / b
+
+    fun getAllRecipes(): List<Recipe> = recipeRepository.findAll()
+
+    @Transactional
+    fun saveRecipe(recipe: Recipe): Recipe = recipeRepository.save(recipe)
+
+    fun getAggregatedIngredients(recipeIds: List<Long>): List<Map<String, Any>> {
+        return recipeIngredientRepository.findAll()
+            .filter { it.recipe.id in recipeIds }
+            .groupBy { it.ingredient.name }
+            .map { (name, recipeIngredients) ->
+                mapOf(
+                    "ingredient" to name,
+                    "quantity" to recipeIngredients.sumOf { it.quantity },
+                    "unit" to recipeIngredients.first().unit
+                )
+            }
+    }
 }
