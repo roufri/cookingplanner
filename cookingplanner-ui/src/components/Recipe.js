@@ -1,12 +1,12 @@
 import React from 'react';
 
 export default function Recipe (props) {
-    const { recipe } = props; // Destructure the recipe object
+    const { recipe } = props;
     
     return (
         <div className="recipe-card">
             <div className="recipe-header">
-                <h2 className="recipe-title">{recipe.name}</h2> {/* Change to recipe.name based on the API */}
+                <h2 className="recipe-title">{recipe.name}</h2>
                 <button className="change-recipe-button" onClick={props.reroll}>🔄</button>
             </div>
             <h3>Ingredients</h3>
