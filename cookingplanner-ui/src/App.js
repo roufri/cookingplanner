@@ -1,10 +1,10 @@
 import React from 'react';
-import RecipeList from './components/RecipeList';
+import MultiStepForm from './components/MultiStepForm';
 
 function App() {
     return (
         <div className="app">
-            <RecipeList />
+            <MultiStepForm />
         </div>
     );
 }

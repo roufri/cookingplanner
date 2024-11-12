@@ -7,7 +7,7 @@ export default function Recipe (props) {
         <div className="recipe-card">
             <div className="recipe-header">
                 <h2 className="recipe-title">{recipe.name}</h2>
-                <button className="change-recipe-button" onClick={props.reroll}>🔄</button>
+                <button className="change-recipe-button" onClick={props.rerollRecipe}>🔄</button>
             </div>
             <h3>Ingredients</h3>
             <ul className="ingredients-list">
