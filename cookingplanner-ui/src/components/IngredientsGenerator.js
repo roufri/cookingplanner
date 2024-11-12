@@ -26,6 +26,15 @@ export default function AggregatedIngredients(props) {
         }));
     };
 
+    const getUncheckedIngredients = () => {
+        return aggregatedIngredients.filter((_, index) => !checkedIngredients[index]);
+    };
+
+    const confirmIngredients = () => {
+        props.setIngredientList(getUncheckedIngredients());
+        props.nextStep();
+    };
+
     return (
         <div>
             <h3>Sum of Ingredients</h3>
@@ -43,6 +52,7 @@ export default function AggregatedIngredients(props) {
                     </li>
                 ))}
             </ul>
+            <button onClick={confirmIngredients}>Confirm Ingredients</button>
         </div>
     );
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NumberOfRecipesSelector from './NumberOfRecipesSelector.js';
 import RecipeList from './RecipeList.js';
 import IngredientsGenerator from './IngredientsGenerator.js';
+import Summary from './Summary.js';
 
 
 export default function MultiStepForm() {
@@ -15,11 +16,12 @@ export default function MultiStepForm() {
 
     return (
         <div>
+            {currentStep > 1 && <button onClick={prevStep}>Back</button>}
+            {currentStep < 4 && <button onClick={nextStep}>Next</button>}
             {currentStep === 1 && <NumberOfRecipesSelector setNumberOfRecipes={setNumberOfRecipes} nextStep={nextStep} />}
             {currentStep === 2 && <RecipeList numberOfRecipes={numberOfRecipes} setSelectedRecipes={setSelectedRecipes} nextStep={nextStep} />}
             {currentStep === 3 && <IngredientsGenerator selectedRecipes={selectedRecipes} setIngredientList={setIngredientList} nextStep={nextStep} />}
-            {currentStep > 1 && <button onClick={prevStep}>Back</button>}
-            {currentStep < 4 && <button onClick={nextStep}>Next</button>}
+            {currentStep === 4 && <Summary selectedRecipes={selectedRecipes} ingredientList={ingredientList} />}
         </div>
     );
 }

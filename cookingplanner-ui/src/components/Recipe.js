@@ -1,13 +1,15 @@
 import React from 'react';
 
 export default function Recipe (props) {
-    const { recipe } = props;
+    const { recipe, rerollRecipe } = props;
     
     return (
         <div className="recipe-card">
             <div className="recipe-header">
                 <h2 className="recipe-title">{recipe.name}</h2>
-                <button className="change-recipe-button" onClick={props.rerollRecipe}>🔄</button>
+                {rerollRecipe && (
+                    <button className="change-recipe-button" onClick={rerollRecipe}>🔄</button>
+                )}
             </div>
             <h3>Ingredients</h3>
             <ul className="ingredients-list">
@@ -22,3 +24,4 @@ export default function Recipe (props) {
         </div>
     );
 };
+
